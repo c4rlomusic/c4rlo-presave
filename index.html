@@ -169,11 +169,9 @@
         wrap.innerHTML = '<p class="muted">Sin link de presave aún.</p>';
       }
 
-      
-$('#release-meta').textContent = r.release_date
-  ? `Sale el ${r.release_date}` // ya llega como '2025-10-30'
-  : '';
-
+      $('#release-meta').textContent = r.release_date
+        ? `Sale el ${r.release_date}`
+        : '';
     }
 
     async function trackClick(release_id, platform) {
