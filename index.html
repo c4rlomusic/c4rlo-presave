@@ -264,7 +264,7 @@
         (rels || []).map(r => `<tr>
           <td>${r.title}</td>
           <td>${r.slug}</td>
-          <td>${r.release_date ? new Date(r.release_date).toLocaleString() : '-'}</td>
+          <td>${r.release_date || '-'}</td>
           <td><pre style="white-space:pre-wrap">${JSON.stringify(r.presave_urls || {}, null, 2)}</pre></td>
         </tr>`).join('');
     }
