@@ -171,10 +171,11 @@
 
       if (r.release_date){
         const [year, month, day] = r.release_date.split('-');
-        const formatted =  `${day}/${month}/${year}`;
-        $('#release-meta').textContent = `Sale el ${formatted}`; // Formato DD/MM/YYYY
+        const shortYear = year.slice(2)
+        const formatted =  `${day}-${month}-${shortYear}`;
+        document.querySelector('#release-meta').textContent = `Sale el ${formatted}`;
       } else {
-        $('#release-meta').textContent = '';
+        document.querySelector('#release-meta').textContent = 'Fecha de lanzamiento no definida';
       }
     }
 
