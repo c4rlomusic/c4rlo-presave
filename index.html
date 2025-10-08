@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C4RLO — Presave</title>
+  <meta name="description" content="Presave y novedades del próximo lanzamiento de C4RLO." />
+
+  <style>
+    :root { --bg:#0b0b0e; --card:#131319; --ink:#e9e9ef; --muted:#a7a7b4; --acc:#7c5cff; }
+    * { box-sizing: border-box }
+    body { margin:0; background:linear-gradient(180deg,#0b0b0e 0%,#111116 100%); color:var(--ink); font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif }
+    a { color: inherit; text-decoration: none }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px }
+    .brand { font-weight: 800; letter-spacing: .5px }
+    .pill { padding:8px 12px; border:1px solid #2a2a33; border-radius:999px; background:#15151c; cursor:pointer }
+    .hero { display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; margin:32px 0 }
+    .card { background:var(--card); border:1px solid #22222a; border-radius:20px; padding:20px; box-shadow:0 6px 24px rgb(0 0 0 / .25) }
+    h1 { font-size:40px; line-height:1.1; margin:0 0 8px }
+    h2 { font-size:22px; margin:0 0 12px }
+    p { color:var(--muted); margin:0 0 12px }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; background:#1b1b24; border:1px solid #2a2a33; cursor:pointer }
+    .btn:hover { border-color:#3a3a47; transform:translateY(-1px) }
+    .btn.primary { background:var(--acc); border-color:#6e4cff; color:white; font-weight:600 }
+    .grid { display:grid; gap:12px }
+    .grid.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)) }
+    .grid.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)) }
+    .muted { color:var(--muted) }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+    input[type=email],input[type=password],input[type=text] { width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2a2a33; background:#12121a; color:var(--ink) }
+    label { font-size:12px; color:var(--muted) }
+    .tag { font-size:12px; border:1px solid #2a2a33; border-radius:999px; padding:4px 8px; color:var(--muted) }
+    .section { margin:28px 0 }
+    .table { width:100%; border-collapse:collapse; font-size:14px }
+    .table th,.table td { border-bottom:1px solid #252533; padding:10px; text-align:left; vertical-align: top }
+    .hide { display:none }
+    footer { margin:32px 0; color:#7b7b89; font-size:13px }
+    @media (max-width:900px){ .hero { grid-template-columns:1fr } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="row">
+        <div class="brand">C4RLO</div>
+        <span class="tag">Presave</span>
+      </div>
+      <div class="row">
+        <a class="pill" href="#admin">Admin</a>
+        <a class="pill" href="#subscribe">Newsletter</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <h1>Nuevo single muy pronto</h1>
+        <p>Haz presave para recibir un recordatorio el día del release y apoyar el algoritmo 🖤</p>
+        <div id="presave-buttons"></div>
+        <p class="muted" id="release-meta"></p>
+      </div>
+
+      <div class="card" id="subscribe">
+        <h2>Únete a la lista</h2>
+        <p>Te aviso de cada lanzamiento. Cero spam. Puedes salirte cuando quieras.</p>
+        <form id="form-sub" class="grid" autocomplete="email">
+          <div>
+            <label>Email</label>
+            <input id="sub-email" type="email" placeholder="tu@email.com" required />
+          </div>
+          <label><input id="sub-consent" type="checkbox" checked /> Acepto recibir correos sobre releases y novedades.</label>
+          <button class="btn primary" type="submit">Suscribirme</button>
+          <div class="muted" id="sub-msg"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section card" id="admin">
+      <h2>Panel admin</h2>
+
+      <div id="admin-guest">
+        <form id="form-login" class="grid cols-2">
+          <div>
+            <label>Email (admin)</label>
+            <input id="login-email" type="email" required />
+          </div>
+          <div>
+            <label>Password</label>
+            <input id="login-pass" type="password" required />
+          </div>
+          <button class="btn primary" type="submit">Entrar</button>
+          <div class="muted" id="login-msg"></div>
+        </form>
+      </div>
+
+      <div id="admin-authed" class="hide">
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <div class="row">
+            <span class="tag" id="whoami"></span>
+            <button id="btn-logout" class="pill">Salir</button>
+          </div>
+          <div class="row">
+            <button id="btn-refresh" class="pill">Refrescar</button>
+            <button id="btn-new-release" class="pill">+ Release</button>
+          </div>
+        </div>
+
+        <div class="grid cols-3" style="margin-top:12px">
+          <div class="card"><h3>Totales</h3><div id="kpis"></div></div>
+          <div class="card"><h3>Clicks por plataforma</h3><table class="table" id="tbl-clicks"></table></div>
+          <div class="card"><h3>Suscriptores</h3><table class="table" id="tbl-subs"></table></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Releases</h3>
+          <table class="table" id="tbl-releases"></table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> C4RLO • GitHub Pages + Supabase
+    </footer>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    // 🔧 REEMPLAZA por tus valores (Supabase → Settings → API)
+    const SUPABASE_URL = 'https://jlqyakreaqzhbtuxrywu.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpscXlha3JlYXF6aGJ0dXhyeXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyOTM2MzcsImV4cCI6MjA3NDg2OTYzN30.fcv7farkqI1M66q8vF0emDzU8lrezNvyWcXsYstM3_U';
+
+    const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const $ = (sel) => document.querySelector(sel);
+    const el = (tag, attrs={}, txt='') => {
+      const x = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v])=> x.setAttribute(k,v));
+      if (txt) x.textContent = txt;
+      return x;
+    };
+
+    $('#year').textContent = new Date().getFullYear();
+
+    // =========================
+    // LANDING: Release + Presave
+    // =========================
+    async function loadRelease() {
+      const { data, error } = await sb.from('releases')
+        .select('*')
+        .order('release_date', { ascending: true })
+        .limit(1);
+
+      if (error) { console.error(error); return; }
+      const r = data?.[0];
+      if (!r) { $('#presave-buttons').innerHTML = '<p class="muted">Aún no hay release cargado.</p>'; return; }
+
+      const wrap = $('#presave-buttons');
+      wrap.innerHTML = '';
+
+      // Usamos link UNIVERSAL de tu distribuidora (DistroKid/ONErpm/etc.)
+      const url = r.presave_urls?.universal;
+
+      if (url) {
+        const a = el('a', { href: url, class: 'btn primary', target: '_blank', rel: 'noopener' }, '⭐ Presave');
+        a.addEventListener('click', () => trackClick(r.id, 'universal'));
+        wrap.appendChild(a);
+      } else {
+        wrap.innerHTML = '<p class="muted">Sin link de presave aún.</p>';
+      }
+
+      $('#release-meta').textContent = r.release_date
+        ? `Sale el ${new Date(r.release_date).toLocaleDateString()}`
+        : '';
+    }
+
+    async function trackClick(release_id, platform) {
+      try {
+        await sb.from('clicks').insert({ release_id, platform });
+      } catch (e) {
+        console.error('click insert error', e);
+      }
+    }
+
+    // =========================
+    // NEWSLETTER
+    // =========================
+    $('#form-sub').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = /** @type {HTMLInputElement} */($('#sub-email')).value.trim();
+      const consent = /** @type {HTMLInputElement} */($('#sub-consent')).checked;
+      if (!email) return;
+
+      const { error } = await sb.from('subscribers').insert({ email, consent });
+      $('#sub-msg').textContent = error
+        ? 'Hubo un problema. Intenta de nuevo.'
+        : '¡Listo! Te agregué a la lista. Revisa tu correo si llega confirmación.';
+
+      if (!error) $('#form-sub').reset();
+    });
+
+    // =========================
+    // ADMIN: Auth + Dashboard
+    // =========================
+    async function checkSession() {
+      const { data: { session } } = await sb.auth.getSession();
+      toggleAdmin(!!session);
+      if (session) { renderAdmin(); }
+    }
+    function toggleAdmin(isIn) {
+      $('#admin-guest').classList.toggle('hide', isIn);
+      $('#admin-authed').classList.toggle('hide', !isIn);
+    }
+
+    $('#form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = /** @type {HTMLInputElement} */($('#login-email')).value.trim();
+      const password = /** @type {HTMLInputElement} */($('#login-pass')).value;
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      $('#login-msg').textContent = error ? 'Login inválido' : 'Entraste';
+      if (!error) { toggleAdmin(true); renderAdmin(); }
+    });
+
+    $('#btn-logout').addEventListener('click', async () => {
+      await sb.auth.signOut();
+      toggleAdmin(false);
+    });
+
+    $('#btn-refresh').addEventListener('click', () => renderAdmin());
+
+    async function renderAdmin() {
+      const { data: user } = await sb.auth.getUser();
+      $('#whoami').textContent = user?.user?.email || '';
+
+      // KPIs
+      const { data: totals } = await sb.from('v_totals').select('*').limit(1);
+      const t = totals?.[0] || { subscribers: 0, clicks_total: 0, releases_total: 0 };
+      $('#kpis').innerHTML =
+        `<div class="row">
+          <div class="pill">Subs: <b>${t.subscribers}</b></div>
+          <div class="pill">Clicks: <b>${t.clicks_total}</b></div>
+          <div class="pill">Releases: <b>${t.releases_total}</b></div>
+        </div>`;
+
+      // Clicks por plataforma
+      const { data: clicks } = await sb.from('v_clicks_by_release').select('*');
+      const tblc = $('#tbl-clicks');
+      tblc.innerHTML = '<tr><th>Release</th><th>Plataforma</th><th>Clicks</th></tr>' +
+        (clicks || []).map(r => `<tr><td>${r.title}</td><td>${r.platform || '-'}</td><td>${r.clicks}</td></tr>`).join('');
+
+      // Suscriptores (top 50)
+      const { data: subs } = await sb.from('subscribers')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(50);
+      const tbls = $('#tbl-subs');
+      tbls.innerHTML = '<tr><th>Email</th><th>Consent</th><th>Fecha</th></tr>' +
+        (subs || []).map(s => `<tr><td>${s.email}</td><td>${s.consent ? '✔️' : '—'}</td><td>${new Date(s.created_at).toLocaleString()}</td></tr>`).join('');
+
+      // Releases
+      const { data: rels } = await sb.from('releases').select('*').order('created_at', { ascending: false });
+      const tblr = $('#tbl-releases');
+      tblr.innerHTML = '<tr><th>Título</th><th>Slug</th><th>Fecha</th><th>Presave</th></tr>' +
+        (rels || []).map(r => `<tr>
+          <td>${r.title}</td>
+          <td>${r.slug}</td>
+          <td>${r.release_date ? new Date(r.release_date).toLocaleString() : '-'}</td>
+          <td><pre style="white-space:pre-wrap">${JSON.stringify(r.presave_urls || {}, null, 2)}</pre></td>
+        </tr>`).join('');
+    }
+
+    // Crear nuevo release (prompt simple)
+    $('#btn-new-release').addEventListener('click', async () => {
+      const title = prompt('Título del release');
+      if (!title) return;
+      const slug = prompt('Slug único (ej: blew-my-mind)');
+      if (!slug) return;
+      const date = prompt('Fecha (YYYY-MM-DD) o vacío');
+      const universal = prompt('URL presave universal (DistroKid)') || '';
+      const presave_urls = { universal };
+      const payload = { title, slug, presave_urls };
+      if (date) payload.release_date = new Date(date).toISOString();
+
+      const { error } = await sb.from('releases').insert(payload);
+      if (error) alert('Error creando release: ' + error.message);
+      else renderAdmin();
+      loadRelease();
+    });
+
+    // Init
+    loadRelease();
+    checkSession();
+  </script>
+</body>
+</html>
