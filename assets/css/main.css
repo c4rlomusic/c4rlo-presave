@@ -289,3 +289,13 @@ html, body {
     width: 88vw;
   }
 }
+
+.cover-img {
+  display: block;
+  width: 100%;
+  height: auto;         /* mantiene proporción original */
+  max-width: 500px;     /* limita tamaño en pantallas grandes */
+  border-radius: 1rem;  /* opcional, para estética */
+  object-fit: cover;    /* asegura que la imagen no se deforme si el contenedor cambia */
+  margin: 0 auto;
+}
