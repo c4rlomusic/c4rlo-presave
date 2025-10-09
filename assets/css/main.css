@@ -168,3 +168,58 @@
   @keyframes circle-10 { 33%{transform:translate(68px,20px)} 66%{transform:translate(100px,28px)} }
   @keyframes circle-11 { 33%{transform:translate(4px,4px)}   66%{transform:translate(68px,20px)} }
   @keyframes circle-12 { 33%{transform:translate(56px,0)}    66%{transform:translate(60px,-32px)} }
+
+  /* === Tipografía / display === */
+html, body {
+  font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: .5px;
+}
+.h-display{
+  font-weight:700;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height:1.05;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin:0 0 6px;
+}
+.lead{ font-size:clamp(14px, 2.2vw, 18px); opacity:.8; margin:0 0 16px; }
+.section-title{ font-size:22px; margin:0 0 8px; text-transform:uppercase; letter-spacing:1px; }
+
+/* === Header nav mejorado === */
+.site-header{ display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
+.nav{ display:flex; gap:10px; }
+.pill.accent{ background:var(--acc); border-color:#6e4cff; color:#fff; }
+
+/* === Hero layout === */
+.section{ margin: 26px 0; }
+.hero-grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:stretch;
+}
+.hero-art{ display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-art .cover{ width:100%; height:100%; object-fit:cover; border-radius:14px; }
+
+/* === Gallery / slider === */
+.gallery-head{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px;
+}
+.gallery-controls .pill{ padding:6px 10px; }
+
+.slider{ padding:0; overflow:hidden; }
+.slides{
+  display:flex; gap:12px; overflow:auto; scroll-snap-type:x mandatory; padding:12px;
+  border-radius: 18px;
+}
+.slide{
+  scroll-snap-align:center; flex:0 0 80%; max-width: 80%;
+  border-radius: 14px; overflow:hidden; border:1px solid #22222a; background:#101018;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .35);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.slide img{ width:100%; height:320px; object-fit:cover; display:block; }
+.slide:hover{ transform: translateY(-3px); box-shadow: 0 14px 34px rgb(0 0 0 / .45); }
+
+@media (max-width: 900px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .slide{ flex-basis: 90%; max-width: 90%; }
+  .slide img{ height:240px; }
+}

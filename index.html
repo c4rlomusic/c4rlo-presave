@@ -7,83 +7,130 @@
   <meta name="description" content="Presave y novedades del próximo lanzamiento de C4RLO." />
 
   <!-- Estilos -->
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css?v=5">
   <link rel="stylesheet" href="assets/css/button-uiverse.css?v=5">
   <link rel="stylesheet" href="assets/css/social-cta.css">
   <link rel="preconnect" href="https://esm.sh">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="row">
-        <div class="brand">c4rlo</div>
-        <span class="tag">Presave</span>
-      </div>
-      <div class="row">
-        <a class="pill" href="#subscribe">Newsletter</a>
-      </div>
-    </header>
+ <div class="wrap">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">c4rlo</div>
+    <nav class="nav">
+      <a class="pill" href="#gallery">Galería</a>
+      <a class="pill" href="#subscribe">Newsletter</a>
+      <a class="pill accent" href="#presave">Presave</a>
+    </nav>
+  </header>
 
-   <section class="hero">
-  <div class="card">
-    <h1>Nuevo single muy pronto</h1>
-    <p>Haz presave para recibir un recordatorio el día del release y apoyar el algoritmo 🖤</p>
+  <!-- HERO: izquierda copy+CTA+presave / derecha cover -->
+  <section class="hero section">
+    <div class="hero-grid">
+      <!-- Izquierda -->
+      <div class="card hero-copy">
+        <h1 class="h-display">Nuevo single muy pronto</h1>
+        <p class="lead">R&B oscuro, texturas analógicas y corazón digital. Haz presave para recibir un recordatorio y apoyar el algoritmo 🖤</p>
 
-    <!-- 🔥 CTA Redes Sociales -->
-    <div class="social-cta">
-      <div class="social-container">
-        <a class="social-btn spotify" href="https://open.spotify.com/intl-es/artist/778Ix4O57IBWHH11tpYmqr?si=ey7wHxADTVeljwnM5Ri29g" target="_blank" rel="noopener" aria-label="Spotify">
-          <span class="logo"></span><span class="label">Spotify</span>
-        </a>
-        <a class="social-btn apple" href="https://music.apple.com/mx/artist/c4rlo/1818335824" target="_blank" rel="noopener" aria-label="Apple Music">
-          <span class="logo"></span><span class="label">Apple Music</span>
-        </a>
-        <a class="social-btn ig" href="https://www.instagram.com/carlo.midi/" target="_blank" rel="noopener" aria-label="Instagram">
-          <span class="logo"></span><span class="label">Instagram</span>
-        </a>
-        <a class="social-btn fb" href="https://www.facebook.com/people/C4RLO/61553936527628/" target="_blank" rel="noopener" aria-label="Facebook">
-          <span class="logo"></span><span class="label">Facebook</span>
-        </a>
-        <a class="social-btn x" href="https://x.com/carlo_midi" target="_blank" rel="noopener" aria-label="X (Twitter)">
-          <span class="logo"></span><span class="label">X</span>
-        </a>
-        <a class="social-btn yt" href="https://www.youtube.com/@c4rlo.oficial" target="_blank" rel="noopener" aria-label="YouTube">
-          <span class="logo"></span><span class="label">YouTube</span>
-        </a>
-        <a class="social-btn tiktok" href="https://www.tiktok.com/@c4rlo.wav?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
-          <span class="logo"></span><span class="label">TikTok</span>
-        </a>
+        <!-- 🔥 CTA Redes (respetando tu bloque) -->
+        <div class="social-cta">
+          <div class="social-container">
+            <a class="social-btn spotify" href="https://open.spotify.com/intl-es/artist/778Ix4O57IBWHH11tpYmqr?si=ey7wHxADTVeljwnM5Ri29g" target="_blank" rel="noopener" aria-label="Spotify">
+              <span class="logo"></span><span class="label">Spotify</span>
+            </a>
+            <a class="social-btn apple" href="https://music.apple.com/mx/artist/c4rlo/1818335824" target="_blank" rel="noopener" aria-label="Apple Music">
+              <span class="logo"></span><span class="label">Apple Music</span>
+            </a>
+            <a class="social-btn ig" href="https://www.instagram.com/carlo.midi/" target="_blank" rel="noopener" aria-label="Instagram">
+              <span class="logo"></span><span class="label">Instagram</span>
+            </a>
+            <a class="social-btn fb" href="https://www.facebook.com/people/C4RLO/61553936527628/" target="_blank" rel="noopener" aria-label="Facebook">
+              <span class="logo"></span><span class="label">Facebook</span>
+            </a>
+            <a class="social-btn x" href="https://x.com/carlo_midi" target="_blank" rel="noopener" aria-label="X (Twitter)">
+              <span class="logo"></span><span class="label">X</span>
+            </a>
+            <a class="social-btn yt" href="https://www.youtube.com/@c4rlo.oficial" target="_blank" rel="noopener" aria-label="YouTube">
+              <span class="logo"></span><span class="label">YouTube</span>
+            </a>
+            <a class="social-btn tiktok" href="https://www.tiktok.com/@c4rlo.wav?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
+              <span class="logo"></span><span class="label">TikTok</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-SAVE (tu botón uiverse se inyecta por JS aquí) -->
+        <div id="presave" class="action" style="margin-top:12px">
+          <div id="presave-buttons"></div>
+          <p class="muted" id="release-meta"></p>
+        </div>
+      </div>
+
+      <!-- Derecha: Cover de la canción -->
+      <div class="card hero-art">
+        <!-- Pon tu cover; si no, deja vacío para solo textura -->
+        <img src="assets/img/cover.jpg" alt="Cover del single" class="cover" />
       </div>
     </div>
-    <!-- 🔥 Fin CTA Redes Sociales -->
+  </section>
 
-    <div id="presave-buttons"></div>
-    <p class="muted" id="release-meta"></p>
-  </div>
+  <!-- About / Statement -->
+  <section class="about card section">
+    <h2 class="section-title">Sobre el track</h2>
+    <p class="muted">Una atmósfera de bajos profundos, pads de cinta y una voz al borde del susurro. Producido entre la madrugada y una MPC.</p>
+  </section>
 
-
-      <div class="card" id="subscribe">
-        <h2>Únete a la lista</h2>
-        <p>Te aviso de cada lanzamiento. Cero spam. Puedes salirte cuando quieras.</p>
-        <form id="form-sub" class="grid" autocomplete="email">
-          <div>
-            <label>Email</label>
-            <input id="sub-email" type="email" placeholder="tu@email.com" required />
-          </div>
-          <label>
-            <input id="sub-consent" type="checkbox" checked />
-            Acepto recibir correos sobre releases y novedades.
-          </label>
-          <button class="btn primary" type="submit">Suscribirme</button>
-          <div class="muted" id="sub-msg" aria-live="polite"></div>
-        </form>
+  <!-- Galería / Slides -->
+  <section id="gallery" class="section">
+    <div class="gallery-head">
+      <h2 class="section-title">Galería</h2>
+      <div class="gallery-controls">
+        <button class="pill gallery-prev" aria-label="Anterior">◄</button>
+        <button class="pill gallery-next" aria-label="Siguiente">►</button>
       </div>
-    </section>
+    </div>
 
-    <footer>
-      © <span id="year"></span> C4RLO
-    </footer>
-  </div>
+    <!-- Slider 100% CSS/JS ligero con scroll-snap -->
+    <div class="slider card">
+      <div class="slides" id="slides">
+        <figure class="slide">
+          <img src="assets/img/gallery-1.jpg" alt="Frame 1" loading="lazy">
+        </figure>
+        <figure class="slide">
+          <img src="assets/img/gallery-2.jpg" alt="Frame 2" loading="lazy">
+        </figure>
+        <figure class="slide">
+          <img src="assets/img/gallery-3.jpg" alt="Frame 3" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter (respetando tus IDs) -->
+  <section class="section card" id="subscribe">
+    <h2 class="section-title">Únete a la lista</h2>
+    <p class="muted">Te aviso de cada lanzamiento. Cero spam. Puedes salirte cuando quieras.</p>
+    <form id="form-sub" class="grid" autocomplete="email">
+      <div>
+        <label>Email</label>
+        <input id="sub-email" type="email" placeholder="tu@email.com" required />
+      </div>
+      <label>
+        <input id="sub-consent" type="checkbox" checked />
+        Acepto recibir correos sobre releases y novedades.
+      </label>
+      <button class="btn primary" type="submit">Suscribirme</button>
+      <div class="muted" id="sub-msg" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © <span id="year"></span> C4RLO
+  </footer>
+</div>
+
 
   <!-- ÚNICO script público -->
   <script type="module" src="assets/js/app.js?v=5"></script>
