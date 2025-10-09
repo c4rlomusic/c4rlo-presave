@@ -1,0 +1,170 @@
+:root { --bg:#0b0b0e; --card:#131319; --ink:#e9e9ef; --muted:#a7a7b4; --acc:#7c5cff; }
+* { box-sizing: border-box }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+
+    /* variables para interacción del fondo */
+    --x: calc(var(--posX, 0) * 1px);
+    --y: calc(var(--posY, 0) * 1px);
+
+    /* fondo con múltiples gradientes estilo R&B */
+    background-image:
+      /* capa 1: burdeos → negro */
+      linear-gradient(115deg, rgb(134, 3, 3), rgb(0 0 0)),
+
+      /* capa 2: beige → marrón (reacciona al mouse) */
+      radial-gradient(90% 100% at calc(50% + var(--x)) calc(0% + var(--y)), rgb(214 191 163), rgb(60 40 30)),
+
+      /* capa 3: marrón cálido en dirección opuesta */
+      radial-gradient(100% 100% at calc(80% - var(--x)) calc(0% - var(--y)), rgb(122 74 31), rgb(43 0 0)),
+
+      /* capa 4: burdeos profundo hacia la esquina superior derecha */
+      radial-gradient(150% 210% at calc(100% + var(--x)) calc(0% + var(--y)), rgb(75 15 15), rgb(0 0 0)),
+
+      /* capa 5: beige suave desplazada a la derecha */
+      radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), rgb(214 191 163), rgb(43 0 0)),
+
+      /* capa base: negro → marrón oscuro */
+      linear-gradient(60deg, rgb(43 0 0), rgb(60 40 30));
+
+    background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+    background-attachment: fixed;
+  }
+
+  a { color: inherit; text-decoration: none }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px }
+  header { display:flex; align-items:center; justify-content:space-between; gap:16px }
+  .brand { font-weight: 800; letter-spacing: .5px }
+  .pill { padding:8px 12px; border:1px solid #2a2a33; border-radius:999px; background:#15151c; cursor:pointer }
+  .hero { display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; margin:32px 0 }
+  .card { background:var(--card); border:1px solid #22222a; border-radius:20px; padding:20px; box-shadow:0 6px 24px rgb(0 0 0 / .25) }
+  h1 { font-size:40px; line-height:1.1; margin:0 0 8px }
+  h2 { font-size:22px; margin:0 0 12px }
+  p { color:var(--muted); margin:0 0 12px }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; background:#1b1b24; border:1px solid #2a2a33; cursor:pointer }
+  .btn:hover { border-color:#3a3a47; transform:translateY(-1px) }
+  .btn.primary { background:var(--acc); border-color: rgb(134, 3, 3); color:white; font-weight:600 }
+  .grid { display:grid; gap:12px }
+  .grid.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)) }
+  .grid.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .muted { color:var(--muted) }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+  input[type=email],input[type=password],input[type=text] { width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2a2a33; background:#12121a; color:var(--ink) }
+  label { font-size:12px; color:var(--muted) }
+  .tag { font-size:12px; border:1px solid #2a2a33; border-radius:999px; padding:4px 8px; color:var(--muted) }
+  .section { margin:28px 0 }
+  .table { width:100%; border-collapse:collapse; font-size:14px }
+  .table th,.table td { border-bottom:1px solid #252533; padding:10px; text-align:left; vertical-align: top }
+  .hide { display:none }
+  footer { margin:32px 0; color:#7b7b89; font-size:13px }
+  @media (max-width:900px){ .hero { grid-template-columns:1fr } }
+
+  /* === Botón PRE-SAVE estilo uiverse === */
+  .uiverse {
+    --duration: 7s;
+    --easing: linear;
+    --c-color-1: rgba(0, 0, 0, 0.7);
+    --c-color-2: #000000;
+    --c-color-3: rgba(134, 3, 3, 0.7);
+    --c-color-4: rgba(134, 3, 3, 0.7);
+    --c-shadow: rgba(134, 3, 3, 0.7);
+    --c-shadow-inset-top: rgba(134, 3, 3, 0.7);
+    --c-shadow-inset-bottom: rgba(255, 250, 215, 0.8);
+    --c-radial-inner: #FFB22C;
+    --c-radial-outer: rgba(134, 3, 3, 0.7);
+    --c-color: #fff;
+    -webkit-tap-highlight-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    display: inline-block; /* para <a> */
+    border-radius: 24px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--c-color);
+    background: radial-gradient(circle, var(--c-radial-inner), var(--c-radial-outer) 80%);
+    box-shadow: 0 0 14px var(--c-shadow);
+  }
+  .uiverse:before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    border-radius: 24px;
+    box-shadow:
+      inset 0 3px 12px var(--c-shadow-inset-top),
+      inset 0 -3px 4px var(--c-shadow-inset-bottom);
+  }
+  .uiverse .wrapper {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    overflow: hidden;
+    border-radius: 24px;
+    min-width: 132px;
+    padding: 12px 18px;
+    position: relative;
+  }
+  .uiverse .wrapper span {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
+  .uiverse:hover { --duration: 1400ms; }
+  .uiverse .wrapper .circle {
+    position: absolute;
+    left: 0; top: 0;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    filter: blur(var(--blur, 8px));
+    background: var(--background, transparent);
+    transform: translate(var(--x, 0), var(--y, 0)) translateZ(0);
+    animation: var(--animation, none) var(--duration) var(--easing) infinite;
+  }
+  .uiverse .wrapper .circle.circle-1,
+  .uiverse .wrapper .circle.circle-9,
+  .uiverse .wrapper .circle.circle-10 { --background: var(--c-color-4); }
+  .uiverse .wrapper .circle.circle-3,
+  .uiverse .wrapper .circle.circle-4 { --background: var(--c-color-2); --blur: 14px; }
+  .uiverse .wrapper .circle.circle-5,
+  .uiverse .wrapper .circle.circle-6 { --background: var(--c-color-3); --blur: 16px; }
+  .uiverse .wrapper .circle.circle-2,
+  .uiverse .wrapper .circle.circle-7,
+  .uiverse .wrapper .circle.circle-8,
+  .uiverse .wrapper .circle.circle-11,
+  .uiverse .wrapper .circle.circle-12 { --background: var(--c-color-1); --blur: 12px; }
+  .uiverse .wrapper .circle.circle-1  { --x: 0;   --y: -40px; --animation: circle-1; }
+  .uiverse .wrapper .circle.circle-2  { --x: 92px; --y: 8px;   --animation: circle-2; }
+  .uiverse .wrapper .circle.circle-3  { --x: -12px;--y: -12px; --animation: circle-3; }
+  .uiverse .wrapper .circle.circle-4  { --x: 80px; --y: -12px; --animation: circle-4; }
+  .uiverse .wrapper .circle.circle-5  { --x: 12px; --y: -4px;  --animation: circle-5; }
+  .uiverse .wrapper .circle.circle-6  { --x: 56px; --y: 16px;  --animation: circle-6; }
+  .uiverse .wrapper .circle.circle-7  { --x: 8px;  --y: 28px;  --animation: circle-7; }
+  .uiverse .wrapper .circle.circle-8  { --x: 28px; --y: -4px;  --animation: circle-8; }
+  .uiverse .wrapper .circle.circle-9  { --x: 20px; --y: -12px; --animation: circle-9; }
+  .uiverse .wrapper .circle.circle-10 { --x: 64px; --y: 16px;  --animation: circle-10; }
+  .uiverse .wrapper .circle.circle-11 { --x: 4px;  --y: 4px;   --animation: circle-11; }
+  .uiverse .wrapper .circle.circle-12 { --blur:14px; --x: 52px; --y: 4px; --animation: circle-12; }
+  @keyframes circle-1  { 33%{transform:translate(0,16px)} 66%{transform:translate(12px,64px)} }
+  @keyframes circle-2  { 33%{transform:translate(80px,-10px)}66%{transform:translate(72px,-48px)} }
+  @keyframes circle-3  { 33%{transform:translate(20px,12px)} 66%{transform:translate(12px,4px)} }
+  @keyframes circle-4  { 33%{transform:translate(76px,-12px)}66%{transform:translate(112px,-8px)} }
+  @keyframes circle-5  { 33%{transform:translate(84px,28px)} 66%{transform:translate(40px,-32px)} }
+  @keyframes circle-6  { 33%{transform:translate(28px,-16px)}66%{transform:translate(76px,-56px)} }
+  @keyframes circle-7  { 33%{transform:translate(8px,28px)}  66%{transform:translate(20px,-60px)} }
+  @keyframes circle-8  { 33%{transform:translate(32px,-4px)} 66%{transform:translate(56px,-20px)} }
+  @keyframes circle-9  { 33%{transform:translate(20px,-12px)}66%{transform:translate(80px,-8px)} }
+  @keyframes circle-10 { 33%{transform:translate(68px,20px)} 66%{transform:translate(100px,28px)} }
+  @keyframes circle-11 { 33%{transform:translate(4px,4px)}   66%{transform:translate(68px,20px)} }
+  @keyframes circle-12 { 33%{transform:translate(56px,0)}    66%{transform:translate(60px,-32px)} }
