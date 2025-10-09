@@ -20,17 +20,11 @@ body {
   --x: calc(var(--posX, 0) * 1px);
   --y: calc(var(--posY, 0) * 1px);
   background-image:
-    /* burdeos → negro */
     linear-gradient(115deg, rgb(134, 3, 3), rgb(0 0 0)),
-    /* beige → marrón (reacciona al mouse) */
     radial-gradient(90% 100% at calc(50% + var(--x)) calc(0% + var(--y)), rgb(214 191 163), rgb(60 40 30)),
-    /* marrón cálido opuesto */
     radial-gradient(100% 100% at calc(80% - var(--x)) calc(0% - var(--y)), rgb(122 74 31), rgb(43 0 0)),
-    /* burdeos profundo */
     radial-gradient(150% 210% at calc(100% + var(--x)) calc(0% + var(--y)), rgb(75 15 15), rgb(0 0 0)),
-    /* beige suave desplazada */
     radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), rgb(214 191 163), rgb(43 0 0)),
-    /* base negro → marrón oscuro */
     linear-gradient(60deg, rgb(43 0 0), rgb(60 40 30));
   background-blend-mode: overlay, overlay, difference, difference, difference, normal;
   background-attachment: fixed;
@@ -96,15 +90,14 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
 
 .hero-grid{
   display:grid;
-  grid-template-columns: minmax(0, 640px) 1fr; /* izq fija, der fluida */
+  grid-template-columns: minmax(0, 640px) 1fr; /* izq fija, der fluida (móvil/tablet) */
   gap:28px;
   align-items:start;
 }
 
 .hero-left{ display:flex; flex-direction:column; gap:16px; }
-#presave { scroll-margin-top: 80px; } /* al saltar desde la nav, no tape el header */
-
-#presave-buttons { margin-top: 6px; } /* respirito del botón animado */
+#presave { scroll-margin-top: 80px; }
+#presave-buttons { margin-top: 6px; }
 #release-meta { margin-top: 2px; }
 
 /* derecha (cover) */
@@ -115,7 +108,7 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
   box-shadow:0 12px 30px rgba(0,0,0,.40); overflow:hidden;
 }
 
-/* wrapper cuadrado infalible */
+/* wrapper cuadrado por defecto (móvil/tablet) */
 .cover-wrap{
   width: clamp(260px, 32vw, 520px);
   aspect-ratio: 1 / 1;
@@ -137,13 +130,11 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
   .nav { gap:8px; }
 
   .hero-grid{ grid-template-columns:1fr; }
-  /* ⚠️ Importante: NO adelantar el cover. Deja el orden de DOM: texto (presave) → cover */
   .hero-art { order: 0; }
-  .hero-left { order: -1; } /* asegura que la izquierda vaya primero si algún estilo viejo la movía */
+  .hero-left { order: -1; }
 
   .cover-wrap{ width:min(88vw, 520px); margin:0 auto; }
 
-  /* Social CTA: envolver y reducir tamaño para que no se encimen */
   .social-cta .social-container {
     display:flex; flex-wrap:wrap; gap:8px;
   }
@@ -154,7 +145,6 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
     font-size: 14px;
   }
 
-  /* Espacios entre CTA / presave / meta */
   #presave-buttons { margin-top: 10px; }
   #release-meta { margin-top: 4px; }
 }
@@ -162,6 +152,39 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
 /* Parche por si quedó alguna regla vieja en otros CSS */
 .hero img.cover, .hero-art .cover {
   height:auto !important; aspect-ratio:auto !important;
+}
+
+/* =========================
+   💻 DESKTOP: 50/50 y alturas iguales
+========================= */
+@media (min-width: 901px){
+  .hero-grid{
+    grid-template-columns: 1fr 1fr;   /* mitad / mitad */
+    align-items: stretch;             /* estira ambas columnas */
+  }
+
+  /* que ambas tarjetas llenen la altura de la fila */
+  .hero-left,
+  .hero-art,
+  .hero-left.card,
+  .hero-art.card{ height: 100%; }
+
+  /* portada llena la tarjeta sin deformarse */
+  .cover-wrap{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;               /* anulamos cuadrado en desktop */
+    max-height: none;
+    border-radius:16px; overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.4);
+  }
+  .cover-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
 }
 
 /* =========================
