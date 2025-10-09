@@ -258,3 +258,34 @@ html, body {
     margin: 0 auto;
   }
 }
+
+/* No estirar las columnas del hero */
+.hero-grid { align-items: start; }
+
+/* La tarjeta del cover no debe forzar altura */
+.hero-art { align-self: start; padding: 16px; }
+
+/* Cover cuadrado, sin deformarse */
+.hero-art .cover {
+  display: block;
+  width: min(40vw, 480px);   /* ancho cómodo en desktop */
+  height: auto !important;   /* evita height:100% heredado */
+  aspect-ratio: 1 / 1;       /* cuadrado perfecto */
+  object-fit: cover;         /* recorte sin deformar */
+  object-position: center; 
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.4);
+}
+
+/* En pantallas grandes puedes permitir un poquito más de ancho */
+@media (min-width: 1400px) {
+  .hero-art .cover { width: 520px; }
+}
+
+/* En móvil: que respire y no se pegue a los bordes */
+@media (max-width: 900px) {
+  .hero-art { order: -1; }   /* opcional: portada arriba en móvil */
+  .hero-art .cover {
+    width: 88vw;
+  }
+}
