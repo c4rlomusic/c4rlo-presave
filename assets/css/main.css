@@ -223,3 +223,38 @@ html, body {
   .slide{ flex-basis: 90%; max-width: 90%; }
   .slide img{ height:240px; }
 }
+
+/* ===== Cover cuadrado responsivo ===== */
+.hero-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hero-art .cover {
+  width: 100%;
+  max-width: 420px;      /* Tamaño cómodo en desktop */
+  aspect-ratio: 1 / 1;   /* Cuadrado */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+}
+
+/* En pantallas grandes, no dejar que se expanda demasiado */
+@media (min-width: 1400px) {
+  .hero-art .cover {
+    max-width: 500px;
+  }
+}
+
+/* En móvil: que no ocupe todo el ancho pegado */
+@media (max-width: 768px) {
+  .hero-art .cover {
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+}
