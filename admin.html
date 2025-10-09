@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C4RLO — Admin</title>
+  <meta name="description" content="Panel de administración de C4RLO." />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/button-uiverse.css">
+  <link rel="preconnect" href="https://esm.sh">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="row">
+        <div class="brand">C4RLO</div>
+        <span class="tag">Admin</span>
+      </div>
+      <div class="row">
+        <a class="pill" href="./">← Volver</a>
+      </div>
+    </header>
+
+    <section class="section card">
+      <h2>Panel admin</h2>
+
+      <div id="admin-guest">
+        <form id="form-login" class="grid cols-2">
+          <div>
+            <label>Email (admin)</label>
+            <input id="login-email" type="email" required />
+          </div>
+          <div>
+            <label>Password</label>
+            <input id="login-pass" type="password" required />
+          </div>
+          <button class="btn primary" type="submit">Entrar</button>
+          <div class="muted" id="login-msg" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div id="admin-authed" class="hide">
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <div class="row">
+            <span class="tag" id="whoami"></span>
+            <button id="btn-logout" class="pill">Salir</button>
+          </div>
+          <div class="row">
+            <button id="btn-refresh" class="pill">Refrescar</button>
+            <button id="btn-new-release" class="pill">+ Release</button>
+          </div>
+        </div>
+
+        <div class="grid cols-3" style="margin-top:12px">
+          <div class="card"><h3>Totales</h3><div id="kpis"></div></div>
+          <div class="card"><h3>Clicks por plataforma</h3><table class="table" id="tbl-clicks"></table></div>
+          <div class="card"><h3>Suscriptores</h3><table class="table" id="tbl-subs"></table></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Releases</h3>
+          <table class="table" id="tbl-releases"></table>
+        </div>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> C4RLO</footer>
+  </div>
+
+  <!-- Script específico del admin -->
+  <script type="module" src="assets/js/admin-page.js"></script>
+</body>
+</html>
