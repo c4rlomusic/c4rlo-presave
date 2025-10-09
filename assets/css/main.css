@@ -2,7 +2,7 @@
    🎨 VARIABLES / RESET
 ========================= */
 :root {
-  --bg:#0b0b0e; --card:#131319; --ink:#e9e9ef; --muted:#a7a7b4; --acc:#7c5cff;
+  --bg:#0b0b0e; --card:#131319; --ink:#e9e9ef; --muted:#a7a7b4; --acc:rgb(134, 3, 3);
 }
 
 * { box-sizing: border-box; }
