@@ -26,55 +26,54 @@
   </header>
 
   <!-- HERO: izquierda copy+CTA+presave / derecha cover -->
-  <section class="hero section">
-    <div class="hero-grid">
-      <!-- Izquierda -->
-      <div class="card hero-copy">
-        <h1 class="h-display">Nuevo single muy pronto</h1>
-        <p class="lead">¡Presave para recibir un recordatorio y apoyar el algoritmo! </p>
+ <section class="hero">
+  <div class="hero-grid">
+    <!-- Columna IZQUIERDA: texto + CTAs + presave -->
+    <div class="card hero-left">
+      <h1 class="h-display">Nuevo single muy pronto</h1>
+      <p class="lead">Haz presave para recibir un recordatorio el día del release y apoyar el algoritmo 🖤</p>
 
-        <!-- 🔥 CTA Redes (respetando tu bloque) -->
-        <div class="social-cta">
-          <div class="social-container">
-            <a class="social-btn spotify" href="https://open.spotify.com/intl-es/artist/778Ix4O57IBWHH11tpYmqr?si=ey7wHxADTVeljwnM5Ri29g" target="_blank" rel="noopener" aria-label="Spotify">
-              <span class="logo"></span><span class="label">Spotify</span>
-            </a>
-            <a class="social-btn apple" href="https://music.apple.com/mx/artist/c4rlo/1818335824" target="_blank" rel="noopener" aria-label="Apple Music">
-              <span class="logo"></span><span class="label">Apple Music</span>
-            </a>
-            <a class="social-btn ig" href="https://www.instagram.com/carlo.midi/" target="_blank" rel="noopener" aria-label="Instagram">
-              <span class="logo"></span><span class="label">Instagram</span>
-            </a>
-            <a class="social-btn fb" href="https://www.facebook.com/people/C4RLO/61553936527628/" target="_blank" rel="noopener" aria-label="Facebook">
-              <span class="logo"></span><span class="label">Facebook</span>
-            </a>
-            <a class="social-btn x" href="https://x.com/carlo_midi" target="_blank" rel="noopener" aria-label="X (Twitter)">
-              <span class="logo"></span><span class="label">X</span>
-            </a>
-            <a class="social-btn yt" href="https://www.youtube.com/@c4rlo.oficial" target="_blank" rel="noopener" aria-label="YouTube">
-              <span class="logo"></span><span class="label">YouTube</span>
-            </a>
-            <a class="social-btn tiktok" href="https://www.tiktok.com/@c4rlo.wav?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
-              <span class="logo"></span><span class="label">TikTok</span>
-            </a>
-          </div>
+      <!-- 🔥 CTA Redes Sociales (lo que ya tenías) -->
+      <div class="social-cta">
+        <div class="social-container">
+          <a class="social-btn spotify" href="https://open.spotify.com/intl-es/artist/778Ix4O57IBWHH11tpYmqr?si=ey7wHxADTVeljwnM5Ri29g" target="_blank" rel="noopener" aria-label="Spotify">
+            <span class="logo"></span><span class="label">Spotify</span>
+          </a>
+          <a class="social-btn apple" href="https://music.apple.com/mx/artist/c4rlo/1818335824" target="_blank" rel="noopener" aria-label="Apple Music">
+            <span class="logo"></span><span class="label">Apple Music</span>
+          </a>
+          <a class="social-btn ig" href="https://www.instagram.com/carlo.midi/" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="logo"></span><span class="label">Instagram</span>
+          </a>
+          <a class="social-btn fb" href="https://www.facebook.com/people/C4RLO/61553936527628/" target="_blank" rel="noopener" aria-label="Facebook">
+            <span class="logo"></span><span class="label">Facebook</span>
+          </a>
+          <a class="social-btn x" href="https://x.com/carlo_midi" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <span class="logo"></span><span class="label">X</span>
+          </a>
+          <a class="social-btn yt" href="https://www.youtube.com/@c4rlo.oficial" target="_blank" rel="noopener" aria-label="YouTube">
+            <span class="logo"></span><span class="label">YouTube</span>
+          </a>
+          <a class="social-btn tiktok" href="https://www.tiktok.com/@c4rlo.wav?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
+            <span class="logo"></span><span class="label">TikTok</span>
+          </a>
         </div>
+      </div>
+      <!-- /CTA sociales -->
 
-        <!-- PRE-SAVE (tu botón uiverse se inyecta por JS aquí) -->
-        <div class="card hero-art">
-  <div class="cover-wrap">
-    <img src="assets/img/cover.png" alt="Cover del single" class="cover-img" loading="lazy">
-  </div>
-</div>
+      <div id="presave-buttons"></div>
+      <p class="muted" id="release-meta"></p>
+    </div>
 
-
-      <!-- Derecha: Cover de la canción -->
-      <div class="card hero-art">
-        <!-- Pon tu cover; si no, deja vacío para solo textura -->
-        <img src="assets/img/cover.png" alt="Cover del single" class="cover" />
+    <!-- Columna DERECHA: SOLO cover -->
+    <div class="card hero-art">
+      <div class="cover-wrap">
+        <img src="assets/img/cover.png" alt="Cover del single" class="cover-img" loading="lazy">
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- About / Statement -->
   <section class="about card section">
