@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/main.css?v=6" />
+  <link rel="stylesheet" href="assets/css/main.css?v=8" />
   <link rel="stylesheet" href="assets/css/button-uiverse.css?v=5" />
   <link rel="stylesheet" href="assets/css/social-cta.css?v=3" />
 
@@ -23,9 +23,58 @@
     <header class="site-header">
       <div class="brand">c4rlo</div>
       <nav class="nav">
-        <a class="pill" href="#gallery">Galería</a>
-        <a class="pill" href="#subscribe">Newsletter</a>
-        <a class="pill accent" href="#presave">Presave</a>
+        <!-- ✅ Nav con estilo uiverse compacto -->
+        <a class="uiverse nav-cta" href="#gallery" aria-label="Ir a Galería">
+          <div class="wrapper">
+            <span>Galería</span>
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+            <div class="circle circle-4"></div>
+            <div class="circle circle-5"></div>
+            <div class="circle circle-6"></div>
+            <div class="circle circle-7"></div>
+            <div class="circle circle-8"></div>
+            <div class="circle circle-9"></div>
+            <div class="circle circle-10"></div>
+            <div class="circle circle-11"></div>
+            <div class="circle circle-12"></div>
+          </div>
+        </a>
+        <a class="uiverse nav-cta" href="#subscribe" aria-label="Ir a Newsletter">
+          <div class="wrapper">
+            <span>Newsletter</span>
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+            <div class="circle circle-4"></div>
+            <div class="circle circle-5"></div>
+            <div class="circle circle-6"></div>
+            <div class="circle circle-7"></div>
+            <div class="circle circle-8"></div>
+            <div class="circle circle-9"></div>
+            <div class="circle circle-10"></div>
+            <div class="circle circle-11"></div>
+            <div class="circle circle-12"></div>
+          </div>
+        </a>
+        <a class="uiverse nav-cta" href="#presave" aria-label="Ir a Presave">
+          <div class="wrapper">
+            <span>Presave</span>
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+            <div class="circle circle-4"></div>
+            <div class="circle circle-5"></div>
+            <div class="circle circle-6"></div>
+            <div class="circle circle-7"></div>
+            <div class="circle circle-8"></div>
+            <div class="circle circle-9"></div>
+            <div class="circle circle-10"></div>
+            <div class="circle circle-11"></div>
+            <div class="circle circle-12"></div>
+          </div>
+        </a>
       </nav>
     </header>
 
@@ -123,7 +172,26 @@
           <input id="sub-consent" type="checkbox" checked />
           Acepto recibir correos sobre releases y novedades.
         </label>
-        <button class="btn primary" type="submit">Suscribirme</button>
+
+        <!-- Botón "Suscribirme" con estilo uiverse (igual que Presave) -->
+        <button class="btn primary uiverse" type="submit" id="btn-subscribe">
+          <div class="wrapper">
+            <span>Suscribirme</span>
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+            <div class="circle circle-4"></div>
+            <div class="circle circle-5"></div>
+            <div class="circle circle-6"></div>
+            <div class="circle circle-7"></div>
+            <div class="circle circle-8"></div>
+            <div class="circle circle-9"></div>
+            <div class="circle circle-10"></div>
+            <div class="circle circle-11"></div>
+            <div class="circle circle-12"></div>
+          </div>
+        </button>
+
         <div class="muted" id="sub-msg" aria-live="polite"></div>
       </form>
     </section>
@@ -133,9 +201,9 @@
   </div>
 
   <!-- Script público -->
-  <script type="module" src="assets/js/app.js?v=6"></script>
+  <script type="module" src="assets/js/app.js?v=8"></script>
 
-  <!-- Fondo reactivo al mouse (como ya tenías) -->
+  <!-- Fondo reactivo al mouse -->
   <script>
     (function () {
       let rect = document.body.getBoundingClientRect();
