@@ -1,14 +1,18 @@
+// Guardia: NO ejecutes si no existe el layout de admin (evita colarse en la home)
+if (!document.querySelector('#admin-guest') || !document.querySelector('#admin-authed')) {
+  // Si por error se cargara en la home, no hagas nada (o descomenta para redirigir):
+  // location.replace('./');
+}
+
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-// ⚠️ Tus valores públicos
 const SUPABASE_URL = 'https://jlqyakreaqzhbtuxrywu.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpscXlha3JlYXF6aGJ0dXhyeXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyOTM2MzcsImV4cCI6MjA3NDg2OTYzN30.fcv7farkqI1M66q8vF0emDzU8lrezNvyWcXsYstM3_U';
 
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 const $ = (sel) => document.querySelector(sel);
 
-document.querySelector('#year').textContent = new Date().getFullYear();
+$('#year').textContent = new Date().getFullYear();
 
 // -------- Auth + UI toggle --------
 async function checkSession() {
@@ -22,7 +26,7 @@ function toggleAdmin(isIn) {
 }
 
 // login
-$('#form-login').addEventListener('submit', async (e) => {
+$('#form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = /** @type {HTMLInputElement} */($('#login-email')).value.trim();
   const password = /** @type {HTMLInputElement} */($('#login-pass')).value;

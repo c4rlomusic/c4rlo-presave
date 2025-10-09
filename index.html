@@ -7,10 +7,8 @@
   <meta name="description" content="Presave y novedades del próximo lanzamiento de C4RLO." />
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/button-uiverse.css">
-
-  <!-- Performance: preconnect para el SDK de Supabase (lo usa app.js) -->
+  <link rel="stylesheet" href="assets/css/main.css?v=5">
+  <link rel="stylesheet" href="assets/css/button-uiverse.css?v=5">
   <link rel="preconnect" href="https://esm.sh">
 </head>
 <body>
@@ -51,55 +49,12 @@
       </div>
     </section>
 
-    <section class="section card" id="admin">
-      <h2>Panel admin</h2>
-
-      <div id="admin-guest">
-        <form id="form-login" class="grid cols-2">
-          <div>
-            <label>Email (admin)</label>
-            <input id="login-email" type="email" required />
-          </div>
-          <div>
-            <label>Password</label>
-            <input id="login-pass" type="password" required />
-          </div>
-          <button class="btn primary" type="submit">Entrar</button>
-          <div class="muted" id="login-msg" aria-live="polite"></div>
-        </form>
-      </div>
-
-      <div id="admin-authed" class="hide">
-        <div class="row" style="justify-content:space-between;align-items:center">
-          <div class="row">
-            <span class="tag" id="whoami"></span>
-            <button id="btn-logout" class="pill">Salir</button>
-          </div>
-          <div class="row">
-            <button id="btn-refresh" class="pill">Refrescar</button>
-            <button id="btn-new-release" class="pill">+ Release</button>
-          </div>
-        </div>
-
-        <div class="grid cols-3" style="margin-top:12px">
-          <div class="card"><h3>Totales</h3><div id="kpis"></div></div>
-          <div class="card"><h3>Clicks por plataforma</h3><table class="table" id="tbl-clicks"></table></div>
-          <div class="card"><h3>Suscriptores</h3><table class="table" id="tbl-subs"></table></div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3>Releases</h3>
-          <table class="table" id="tbl-releases"></table>
-        </div>
-      </div>
-    </section>
-
     <footer>
       © <span id="year"></span> C4RLO
     </footer>
   </div>
 
-  <!-- ÚNICO script de entrada que inicializa todo -->
-  <script type="module" src="assets/js/app.js"></script>
+  <!-- ÚNICO script público -->
+  <script type="module" src="assets/js/app.js?v=5"></script>
 </body>
 </html>
