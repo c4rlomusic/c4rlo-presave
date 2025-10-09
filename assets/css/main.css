@@ -10,6 +10,7 @@ html, body {
   margin:0; padding:0;
   font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   letter-spacing:.5px; color:var(--ink);
+  scroll-behavior: smooth;
 }
 
 /* =========================
@@ -42,9 +43,15 @@ a { color: inherit; text-decoration: none; }
 
 .wrap { max-width:1100px; margin:0 auto; padding:24px; }
 
-header { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.site-header {
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding: 8px 0;
+}
 .brand { font-weight:800; letter-spacing:.5px; text-transform:uppercase; }
+
+.nav { display:flex; gap:10px; flex-wrap:wrap; }
 .pill { padding:8px 12px; border:1px solid #2a2a33; border-radius:999px; background:#15151c; cursor:pointer; }
+.pill.accent { background:var(--acc); color:#fff; border-color:#6e4cff; }
 
 .card {
   background:var(--card); border:1px solid #22222a; border-radius:20px;
@@ -53,7 +60,7 @@ header { display:flex; align-items:center; justify-content:space-between; gap:16
 
 h1 {
   font-weight:700; font-size:clamp(36px, 6vw, 56px);
-  line-height:1.05; text-transform:uppercase; letter-spacing:2px; margin:0 0 6px;
+  line-height:1.05; text-transform:uppercase; letter-spacing:2px; margin:0 0 10px;
 }
 h2 { font-size:22px; margin:0 0 12px; }
 p  { color:var(--muted); margin:0 0 12px; }
@@ -85,17 +92,20 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
 /* =========================
    🦋 HERO (TEXTO IZQ / COVER DER)
 ========================= */
-.hero { margin:32px 0; }
+.hero { margin:32px 0; scroll-margin-top: 12px; }
 
 .hero-grid{
   display:grid;
-  grid-template-columns: minmax(0, 640px) 1fr; /* izquierda fija para texto, derecha fluida para cover */
+  grid-template-columns: minmax(0, 640px) 1fr; /* izq fija, der fluida */
   gap:28px;
-  align-items:start; /* evita “aplastar” */
+  align-items:start;
 }
 
-/* izquierda (texto + CTA + presave) */
-.hero-left{ display:flex; flex-direction:column; gap:12px; }
+.hero-left{ display:flex; flex-direction:column; gap:16px; }
+#presave { scroll-margin-top: 80px; } /* al saltar desde la nav, no tape el header */
+
+#presave-buttons { margin-top: 6px; } /* respirito del botón animado */
+#release-meta { margin-top: 2px; }
 
 /* derecha (cover) */
 .hero-art{
@@ -108,7 +118,7 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
 /* wrapper cuadrado infalible */
 .cover-wrap{
   width: clamp(260px, 32vw, 520px);
-  aspect-ratio: 1 / 1;     /* SIEMPRE cuadrado */
+  aspect-ratio: 1 / 1;
   border-radius:16px; overflow:hidden;
   box-shadow:0 12px 30px rgba(0,0,0,.4);
 }
@@ -119,20 +129,43 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
   object-fit:cover; object-position:50% 50%;
 }
 
-/* responsive */
-@media (max-width:900px){
+/* =========================
+   📱 RESPONSIVE FIXES (evitar encimados)
+========================= */
+@media (max-width: 900px){
+  .site-header { flex-direction: column; align-items:flex-start; gap:10px; }
+  .nav { gap:8px; }
+
   .hero-grid{ grid-template-columns:1fr; }
-  .hero-art{ order:-1; }                 /* portada arriba en móvil */
+  /* ⚠️ Importante: NO adelantar el cover. Deja el orden de DOM: texto (presave) → cover */
+  .hero-art { order: 0; }
+  .hero-left { order: -1; } /* asegura que la izquierda vaya primero si algún estilo viejo la movía */
+
   .cover-wrap{ width:min(88vw, 520px); margin:0 auto; }
+
+  /* Social CTA: envolver y reducir tamaño para que no se encimen */
+  .social-cta .social-container {
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .social-cta .social-btn {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 140px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  /* Espacios entre CTA / presave / meta */
+  #presave-buttons { margin-top: 10px; }
+  #release-meta { margin-top: 4px; }
 }
 
-/* Parche por si quedó alguna regla vieja */
+/* Parche por si quedó alguna regla vieja en otros CSS */
 .hero img.cover, .hero-art .cover {
   height:auto !important; aspect-ratio:auto !important;
 }
 
 /* =========================
-   🎠 GALLERY / SLIDER (opcional)
+   🎠 GALLERY / SLIDER
 ========================= */
 .gallery-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
 .gallery-controls .pill{ padding:6px 10px; }
@@ -215,12 +248,7 @@ footer { margin:32px 0; color:#7b7b89; font-size:13px; text-align:center; }
   position: relative;
 }
 
-.uiverse .wrapper span {
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-}
-
+.uiverse .wrapper span { display:inline-block; position:relative; z-index:1; }
 .uiverse:hover { --duration: 1400ms; }
 
 .uiverse .wrapper .circle {
