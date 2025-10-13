@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="assets/css/main.css?v=8" />
   <link rel="stylesheet" href="assets/css/button-uiverse.css?v=5" />
   <link rel="stylesheet" href="assets/css/social-cta.css?v=3" />
+  <!-- ⏱️ Contador -->
+  <link rel="stylesheet" href="assets/css/countdown.css?v=1" />
 
   <!-- Performance -->
   <link rel="preconnect" href="https://esm.sh" />
@@ -23,7 +25,7 @@
     <header class="site-header">
       <div class="brand">c4rlo</div>
       <nav class="nav">
-        <!-- ✅ Nav con estilo uiverse compacto -->
+        <!--  Nav con estilo uiverse compacto -->
         <a class="uiverse nav-cta" href="#gallery" aria-label="Ir a Galería">
           <div class="wrapper">
             <span>Galería</span>
@@ -84,7 +86,7 @@
         <!-- IZQUIERDA: texto + CTA + presave -->
         <div class="card hero-left">
           <h1>Nuevo single muy pronto</h1>
-          <p class="lead">Haz presave para recibir un recordatorio el día del release y apoyar el algoritmo 🖤</p>
+          <p class="lead">Haz presave para recibir un recordatorio el día del release!!</p>
 
           <!-- 🔥 CTA Redes Sociales (tus enlaces) -->
           <div class="social-cta">
@@ -116,7 +118,15 @@
           <!-- Presave -->
           <div id="presave"></div>
           <div id="presave-buttons"></div>
-          <p class="muted" id="release-meta"></p>
+
+          <!-- Fecha + Contador -->
+          <div class="release-row">
+            <!-- ⚠️ Cambia este ISO por tu fecha real (zona CDMX) -->
+            <p class="muted" id="release-meta" data-release-iso="2025-10-30T00:00:00-06:00">
+              Lanza el 30 Oct 2025
+            </p>
+            <div id="countdown" class="countdown" aria-live="polite"></div>
+          </div>
         </div>
 
         <!-- DERECHA: cover -->
@@ -201,7 +211,7 @@
   </div>
 
   <!-- Script público -->
-  <script type="module" src="assets/js/app.js?v=8"></script>
+  <script type="module" src="assets/js/app.js?v=9"></script>
 
   <!-- Fondo reactivo al mouse -->
   <script>
