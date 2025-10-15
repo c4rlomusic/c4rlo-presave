@@ -6,19 +6,19 @@
   <title>C4RLO — Presave</title>
   <meta name="description" content="Presave y novedades del próximo lanzamiento de C4RLO." />
 
-<!-- Favicon / App Icons -->
-<link rel="icon" href="assets/favicons/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-<link rel="manifest" href="assets/favicons/site.webmanifest">
-<meta name="theme-color" content="#000000">
+  <!-- Favicon / App Icons -->
+  <link rel="icon" href="assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#000000">
 
   <!-- Tipografía -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/main.css?v=8" />
+  <link rel="stylesheet" href="assets/css/main.css?v=9" />
   <link rel="stylesheet" href="assets/css/button-uiverse.css?v=5" />
   <link rel="stylesheet" href="assets/css/social-cta.css?v=3" />
   <!-- ⏱️ Contador -->
@@ -31,7 +31,11 @@
   <div class="wrap">
     <!-- Header -->
     <header class="site-header">
-      <div class="brand">c4rlo</div>
+      <!-- LOGO en lugar del texto -->
+      <a href="#" class="brand" aria-label="Ir al inicio">
+        <img src="assets/img/LOGO.PNG" alt="Logo de C4RLO" class="brand-logo" />
+      </a>
+
       <nav class="nav">
         <!--  Nav con estilo uiverse compacto -->
         <a class="uiverse nav-cta" href="#gallery" aria-label="Ir a Galería">
@@ -129,7 +133,6 @@
 
           <!-- Fecha + Contador -->
           <div class="release-row">
-            <!-- ⚠️ Cambia este ISO por tu fecha real (zona CDMX) -->
             <p class="muted" id="release-meta" data-release-iso="2025-10-30T00:00:00-06:00">
               Disponible el 30 Oct 2025
             </p>
