@@ -44,8 +44,11 @@ a { color: inherit; text-decoration: none; }
 
 /* Brand como enlace con logo */
 .brand {
-  display:flex; align-items:center; gap:10px;
-  text-transform:none; /* ya no es texto */
+  .brand-logo {
+  height: clamp(48px, 8vw, 72px);
+  width: auto;
+}
+
 }
 .brand-logo {
   height:48px; width:auto; display:block;
